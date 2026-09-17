@@ -5,6 +5,7 @@ require("dotenv").config();
 
 
 const app = express();
+app.get('/', (req, res) => { res.sendFile(__dirname + '/index.html'); });
 console.log("DB_USER:", process.env.DB_USER);
 
 app.use(express.json());
