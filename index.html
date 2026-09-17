@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspire School System - Attendance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="school-info">
+            <h1>ASPIRE SCHOOL SYSTEM</h1>
+            <p>Attendance Management System</p>
+        </div>
+
+        <div class="principal-info">
+            <strong>Principal: Sir Ikram</strong>
+            <span>School Administration</span>
+        </div>
+    </header>
+
+
+    <nav class="navigation">
+        <button class="nav-button active" data-section="dashboard">
+            Dashboard
+        </button>
+
+        <button class="nav-button" data-section="attendance">
+            Attendance
+        </button>
+
+        <button class="nav-button" data-section="students">
+            Students
+        </button>
+
+        <button class="nav-button" data-section="classes">
+            Classes & Teachers
+        </button>
+
+        <button class="nav-button" data-section="logs">
+            Alert Logs
+        </button>
+    </nav>
+
+
+    <main class="container">
+
+        <!-- DASHBOARD -->
+
+        <section id="dashboard" class="section active">
+
+            <h2>Dashboard</h2>
+
+            <div class="dashboard-cards">
+
+                <div class="dashboard-card">
+                    <h3>Total Students</h3>
+                    <p id="totalStudents">0</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Present Today</h3>
+                    <p id="presentStudents">0</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Absent Today</h3>
+                    <p id="absentStudents">0</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Alerts Sent</h3>
+                    <p id="totalAlerts">0</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ATTENDANCE -->
+
+        <section id="attendance" class="section">
+
+            <div class="section-header">
+                <div>
+                    <h2>Student Attendance</h2>
+                    <p>Mark daily attendance for your class.</p>
+                </div>
+            </div>
+
+
+            <div class="form-card">
+
+                <div class="form-group">
+
+                    <label for="attendanceClass">
+                        Select Class
+                    </label>
+
+                    <select id="attendanceClass">
+                        <option value="">Select Class</option>
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="attendanceDate">
+                        Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="attendanceDate"
+                    >
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="loadAttendance"
+                    class="button primary"
+                >
+                    Load Students
+                </button>
+
+            </div>
+
+
+            <div class="attendance-actions">
+
+                <button
+                    type="button"
+                    id="markAllPresent"
+                    class="button secondary"
+                >
+                    Mark All Present
+                </button>
+
+                <button
+                    type="button"
+                    id="resetAttendance"
+                    class="button danger"
+                >
+                    Reset
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Roll No.</th>
+                            <th>Student Name</th>
+                            <th>Parent Name</th>
+                            <th>Parent Phone</th>
+                            <th>Attendance</th>
+                            <th>Remarks</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="attendanceTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div class="save-area">
+
+                <button
+                    type="button"
+                    id="saveAttendance"
+                    class="button primary large"
+                >
+                    Save Attendance
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- STUDENTS -->
+
+        <section id="students" class="section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Student Management</h2>
+                    <p>Add and manage school students.</p>
+                </div>
+
+            </div>
+
+
+            <div class="form-card">
+
+                <form id="studentForm">
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="studentClass">
+                                Class
+                            </label>
+
+                            <select id="studentClass" required>
+                                <option value="">
+                                    Select Class
+                                </option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="rollNumber">
+                                Roll Number
+                            </label>
+
+                            <input
+                                type="text"
+                                id="rollNumber"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="studentName">
+                                Student Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="studentName"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="studentGender">
+                                Gender
+                            </label>
+
+                            <select id="studentGender">
+
+                                <option value="Male">
+                                    Male
+                                </option>
+
+                                <option value="Female">
+                                    Female
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="parentName">
+                                Parent Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="parentName"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="parentPhone">
+                                Parent Phone Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="parentPhone"
+                                placeholder="+92XXXXXXXXXX"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="parentEmail">
+                            Parent Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="parentEmail"
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="button primary"
+                    >
+                        Add Student
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>Roll No.</th>
+                            <th>Student Name</th>
+                            <th>Class</th>
+                            <th>Parent Name</th>
+                            <th>Parent Phone</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="studentsTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- CLASSES AND TEACHERS -->
+
+        <section id="classes" class="section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Classes & Teachers</h2>
+                    <p>
+                        Manage classes from Playgroup to 10th Standard.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="form-card">
+
+                <form id="classForm">
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="gradeLevel">
+                                Class
+                            </label>
+
+                            <select id="gradeLevel" required>
+
+                                <option value="">
+                                    Select Class
+                                </option>
+
+                                <option value="Playgroup">
+                                    Playgroup
+                                </option>
+
+                                <option value="Nursery">
+                                    Nursery
+                                </option>
+
+                                <option value="Prep / KG">
+                                    Prep / KG
+                                </option>
+
+                                <option value="Grade 1">
+                                    Grade 1
+                                </option>
+
+                                <option value="Grade 2">
+                                    Grade 2
+                                </option>
+
+                                <option value="Grade 3">
+                                    Grade 3
+                                </option>
+
+                                <option value="Grade 4">
+                                    Grade 4
+                                </option>
+
+                                <option value="Grade 5">
+                                    Grade 5
+                                </option>
+
+                                <option value="Grade 6">
+                                    Grade 6
+                                </option>
+
+                                <option value="Grade 7">
+                                    Grade 7
+                                </option>
+
+                                <option value="Grade 8">
+                                    Grade 8
+                                </option>
+
+                                <option value="Grade 9">
+                                    Grade 9
+                                </option>
+
+                                <option value="Grade 10">
+                                    Grade 10
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="sectionName">
+                                Section
+                            </label>
+
+                            <input
+                                type="text"
+                                id="sectionName"
+                                placeholder="A"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="teacherName">
+                                Class Teacher
+                            </label>
+
+                            <input
+                                type="text"
+                                id="teacherName"
+                                placeholder="Sir Imran"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="roomNumber">
+                                Room Number
+                            </label>
+
+                            <input
+                                type="text"
+                                id="roomNumber"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="button primary"
+                    >
+                        Add Class
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Class</th>
+                            <th>Section</th>
+                            <th>Class Teacher</th>
+                            <th>Room</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="classesTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ALERT LOGS -->
+
+        <section id="logs" class="section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Parent Alert Logs</h2>
+                    <p>
+                        Records of SMS and voice call notifications.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Date & Time</th>
+                            <th>Student</th>
+                            <th>Parent Phone</th>
+                            <th>Alert Type</th>
+                            <th>Status</th>
+                            <th>Message</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="logsTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            Aspire School System © 2026
+        </p>
+
+        <p>
+            Principal: Sir Ikram
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+```
